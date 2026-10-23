@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 
 VULNERABLE_PLUGINS = {
-    'editflow': {
+    'edit-flow': {
         'versions': ['0.8.2', '0.8.1', '0.8.0'],
         'vuln': 'Broken Access Control - contributors can access drafts',
         'cve': 'CVE-2023-30514'

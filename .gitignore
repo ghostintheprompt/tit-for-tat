@@ -13,3 +13,7 @@ build/
 .DS_Store
 .vscode/
 .idea/
+
+# Forensic run artifacts (keep the dir via .gitkeep, not the outputs)
+forensics/*.json
+test_defender_report.json

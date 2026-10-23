@@ -65,10 +65,10 @@ python tit-for-tat.py audit --target https://your-site.com --output report.html
 
 ### Phase 2: CMS Security Testing
 - WordPress version detection
-- Plugin vulnerability scanning
-- Privilege escalation testing
+- Editorial-plugin version detection with known-CVE matching
 - Draft content exposure testing
-- Editorial workflow analysis
+- Editorial workflow URL probing
+- Published-media metadata (EXIF/PDF) exposure checks
 
 ### Phase 3: Comment Platform Analysis
 - Moderator account enumeration
