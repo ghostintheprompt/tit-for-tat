@@ -1,4 +1,5 @@
 import subprocess
+import sys
 import time
 import pytest
 import json
@@ -16,7 +17,7 @@ def defender_server():
     if os.path.exists(report_file):
         os.remove(report_file)
         
-    cmd = ["python3", "evasion/defender_server.py", "--port", str(port), "--output", report_file]
+    cmd = [sys.executable, "evasion/defender_server.py", "--port", str(port), "--output", report_file]
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     
     # Wait for server to start
@@ -35,7 +36,7 @@ def defender_server():
 
 def test_audit_against_defender(defender_server):
     """Run full audit against the defender server."""
-    cmd = ["python3", "tit-for-tat.py", "audit", "--target", defender_server, "--cms-scan", "--comments-analysis"]
+    cmd = [sys.executable, "tit-for-tat.py", "audit", "--target", defender_server, "--cms-scan", "--comments-analysis"]
     result = subprocess.run(cmd, capture_output=True, text=True)
     
     assert result.returncode == 0
@@ -44,7 +45,7 @@ def test_audit_against_defender(defender_server):
 
 def test_stealth_forensic_against_defender(defender_server):
     """Run forensic fetch with stealth against the defender server."""
-    cmd = ["python3", "tit-for-tat.py", "forensic", "--url", defender_server, "--stealth", "--entropy-score"]
+    cmd = [sys.executable, "tit-for-tat.py", "forensic", "--url", defender_server, "--stealth", "--entropy-score"]
     result = subprocess.run(cmd, capture_output=True, text=True)
     
     assert result.returncode == 0
@@ -54,7 +55,7 @@ def test_stealth_forensic_against_defender(defender_server):
 
 def test_canary_scan_against_defender(defender_server):
     """Run canary scan against the defender server."""
-    cmd = ["python3", "tit-for-tat.py", "canary-scan", "--url", defender_server]
+    cmd = [sys.executable, "tit-for-tat.py", "canary-scan", "--url", defender_server]
     result = subprocess.run(cmd, capture_output=True, text=True)
     
     assert result.returncode == 0
